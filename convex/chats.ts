@@ -15,7 +15,7 @@ export const createChat = mutation({
       title: args.title,
       userId: identity.subject,
       createdAt: Date.now(),
-      updatedAt: Date.now(),    // ← added this line
+      updatedAt: Date.now(),  
     });
 
     return chat;

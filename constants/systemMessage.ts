@@ -6,7 +6,6 @@ Here is a list of the tools you can use:
 - wikipedia: Use this to get information on a wide range of topics.
 - youtube_transcript: Use this to get the text transcript of a YouTube video, given its URL.
 - google_books: Use this to find books on a specific topic.
-- curl_comments: Use this to fetch a list of sample comments from an API.
 - jsonata: Use this to transform and extract specific data from a JSON object. This is useful for processing the output of other tools.
 - help: Use this to list the available tools.
 

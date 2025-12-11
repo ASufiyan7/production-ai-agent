@@ -13,9 +13,7 @@ export const createSSEParser = () => {
   let buffer = "";
 
   const parse = (chunk: string): StreamMessage[] => {
-    // Combine buffer with new chunk and split into lines
     const lines = (buffer + chunk).split("\n");
-    // Save last potentially incomplete line
     buffer = lines.pop() || "";
 
     return lines

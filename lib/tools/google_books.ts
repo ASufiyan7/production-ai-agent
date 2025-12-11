@@ -1,9 +1,7 @@
-// lib/tools/google_books.ts
 
 import { DynamicStructuredTool } from "@langchain/core/tools";
 import { z } from "zod";
 
-// FIX: Define a type for the book item to avoid using 'any'
 interface GoogleBookItem {
   id: string;
   volumeInfo: {
@@ -44,7 +42,6 @@ export const googleBooksTool = new DynamicStructuredTool({
         return `No books found for query: "${q}"`;
       }
 
-      // FIX: Use the 'GoogleBookItem' type here
       const results = data.items.map((item: GoogleBookItem) => ({
         title: item.volumeInfo.title,
         authors: item.volumeInfo.authors || ["N/A"],

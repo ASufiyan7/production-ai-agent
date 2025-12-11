@@ -15,19 +15,11 @@ export default function WelcomeMessage() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-blue-500 mt-1">•</span>
+            <span>Finding Information from Internet</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-blue-500 mt-1">•</span>
             <span>Searching through Google Books</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-blue-500 mt-1">•</span>
-            <span>Processing data with JSONata</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-blue-500 mt-1">•</span>
-            <span>Retrieve all Customer and Order data</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-blue-500 mt-1">•</span>
-            <span>Retrieve all Comments from the Comments API</span>
           </li>
         </ul>
         <p className="text-gray-600 mt-4 leading-relaxed">

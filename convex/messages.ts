@@ -41,7 +41,7 @@ export const send = mutation({
       chatId: args.chatId,
       content: args.content.replace(/\n/g, "\\n"),
       role: "user",
-      createdAt: Date.now(), // <-- This is correct.
+      createdAt: Date.now(), 
     });
 
     if (SHOW_COMMENTS) {
@@ -77,7 +77,7 @@ export const store = mutation({
         .replace(/\n/g, "\\n")
         .replace(/\\/g, "\\\\"),
       role: args.role,
-      createdAt: Date.now(), // <-- This is also correct.
+      createdAt: Date.now(), 
     });
 
     if (SHOW_COMMENTS) {

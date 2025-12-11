@@ -83,7 +83,6 @@ export default function Sidebar() {
 
   const handleDeleteChat = async (id: Id<"chats">) => {
     await deleteChat({ id });
-    // If we're currently viewing this chat, redirect to dashboard
     if (window.location.pathname.includes(id)) {
       router.push("/dashboard");
     }

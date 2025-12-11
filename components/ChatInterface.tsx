@@ -60,11 +60,6 @@ export default function ChatInterface({
     return `---START---\n${terminalHtml}\n---END---`;
   };
 
-  /**
-   * Processes a ReadableStream from the SSE response.
-   * This function continuously reads chunks of data from the stream until it's done.
-   * Each chunk is decoded from Uint8Array to string and passed to the callback.
-   */
   const processStream = async (
     reader: ReadableStreamDefaultReader<Uint8Array>,
     onChunk: (chunk: string) => Promise<void>
@@ -91,7 +86,6 @@ export default function ChatInterface({
     setCurrentTool(null);
     setIsLoading(true);
 
-    // Add user's message immediately for better UX
     const optimisticUserMessage: Doc<"messages"> = {
       _id: `temp_${Date.now()}`,
       chatId,
@@ -132,14 +126,12 @@ export default function ChatInterface({
 
       // Process the stream chunks
       await processStream(reader, async (chunk) => {
-        // Parse SSE messages from the chunk
         const messages = parser.parse(chunk);
 
         // Handle each message based on its type
         for (const message of messages) {
           switch (message.type) {
             case StreamMessageType.Token:
-              // Handle streaming tokens (normal text response)
               if ("token" in message) {
                 fullResponse += message.token;
                 setStreamedResponse(fullResponse);
@@ -147,7 +139,7 @@ export default function ChatInterface({
               break;
 
             case StreamMessageType.ToolStart:
-              // Handle start of tool execution (e.g. API calls, file operations)
+              // Handle start of tool execution 
               if ("tool" in message) {
                 setCurrentTool({
                   name: message.tool,
@@ -165,7 +157,6 @@ export default function ChatInterface({
             case StreamMessageType.ToolEnd:
               // Handle completion of tool execution
               if ("tool" in message && currentTool) {
-                // Replace the "Processing..." message with actual output
                 const lastTerminalIndex = fullResponse.lastIndexOf(
                   '<div class="bg-[#1e1e1e]'
                 );
@@ -217,7 +208,6 @@ export default function ChatInterface({
     } catch (error) {
       // Handle any errors during streaming
       console.error("Error sending message:", error);
-      // Remove the optimistic user message if there was an error
       setMessages((prev) =>
         prev.filter((msg) => msg._id !== optimisticUserMessage._id)
       );

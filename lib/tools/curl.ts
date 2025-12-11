@@ -1,9 +1,7 @@
-// lib/tools/curl.ts
 
 import { DynamicStructuredTool } from "@langchain/core/tools";
 import { z } from "zod";
 
-// Define a precise type for the original comment data
 interface Comment {
   postId: number;
   id: number;
@@ -40,11 +38,9 @@ export const curlCommentsTool = new DynamicStructuredTool({
       const data: Comment[] = await response.json();
 
       if (fields && fields.length > 0) {
-        // This mapping logic is now correctly typed and will pass the linter
         const filteredData = data.map((comment): FilteredComment => {
           const newComment: FilteredComment = {};
           for (const field of fields) {
-            // A safer way to check if the property exists
             if (Object.prototype.hasOwnProperty.call(comment, field)) {
               newComment[field] = comment[field as keyof Comment];
             }
